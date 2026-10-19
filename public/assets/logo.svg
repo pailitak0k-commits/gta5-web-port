@@ -1,46 +1,42 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
   <title id="title">Grand Theft Auto V style logo</title>
-  <desc id="desc">A Grand Theft Auto-inspired logo with a large white stencil wordmark and green V emblem.</desc>
+  <desc id="desc">Black background with white Grand Theft Auto style lettering and a green V emblem on a banner.</desc>
   <defs>
     <linearGradient id="greenGrad" x1="0" x2="1" y1="0" y2="1">
-      <stop offset="0%" stop-color="#5edb70"/>
-      <stop offset="50%" stop-color="#2f9b50"/>
-      <stop offset="100%" stop-color="#0f6c39"/>
+      <stop offset="0%" stop-color="#69e66c"/>
+      <stop offset="50%" stop-color="#2fb25d"/>
+      <stop offset="100%" stop-color="#0d6d35"/>
     </linearGradient>
-    <linearGradient id="goldGrad" x1="0" x2="1" y1="0" y2="1">
-      <stop offset="0%" stop-color="#f7df9a"/>
-      <stop offset="100%" stop-color="#b78c2d"/>
-    </linearGradient>
-    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000" flood-opacity="0.75"/>
-    </filter>
     <pattern id="mesh" width="12" height="12" patternUnits="userSpaceOnUse">
-      <path d="M0 12 L12 0 M-4 4 L4 -4 M8 16 L16 8" stroke="rgba(20,120,40,0.9)" stroke-width="1.2"/>
+      <path d="M0 12 L12 0 M-2 2 L2 -2 M10 14 L14 10" stroke="rgba(12,80,30,0.9)" stroke-width="1.2"/>
     </pattern>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#000" flood-opacity="0.7"/>
+    </filter>
   </defs>
 
-  <rect width="1200" height="900" fill="#000"/>
+  <rect width="1200" height="900" fill="#000000"/>
 
   <g filter="url(#shadow)">
-    <g transform="translate(120 90)">
-      <text x="0" y="220" font-family="Impact, Arial Black, sans-serif" font-size="260" font-weight="900" letter-spacing="-18" fill="#f3f3f3" stroke="#1d1d1d" stroke-width="18">grand</text>
-      <text x="32" y="470" font-family="Impact, Arial Black, sans-serif" font-size="260" font-weight="900" letter-spacing="-18" fill="#f3f3f3" stroke="#1d1d1d" stroke-width="18">theft</text>
-      <text x="36" y="730" font-family="Impact, Arial Black, sans-serif" font-size="260" font-weight="900" letter-spacing="-18" fill="#f3f3f3" stroke="#1d1d1d" stroke-width="18">auto</text>
+    <g transform="translate(130 80)">
+      <text x="0" y="220" font-size="260" font-weight="900" letter-spacing="-16" font-family="Impact, 'Arial Black', sans-serif" fill="#f3f3f3" stroke="#1a1a1a" stroke-width="18">grand</text>
+      <text x="30" y="470" font-size="260" font-weight="900" letter-spacing="-16" font-family="Impact, 'Arial Black', sans-serif" fill="#f3f3f3" stroke="#1a1a1a" stroke-width="18">theft</text>
+      <text x="30" y="725" font-size="260" font-weight="900" letter-spacing="-16" font-family="Impact, 'Arial Black', sans-serif" fill="#f3f3f3" stroke="#1a1a1a" stroke-width="18">auto</text>
     </g>
 
-    <g transform="translate(420 500)">
-      <path d="M0 0 L200 290 L350 0 L285 0 L200 180 L115 0 Z" fill="url(#greenGrad)" stroke="#1d1d1d" stroke-width="18" stroke-linejoin="round"/>
-      <path d="M0 0 L200 290 L350 0 L285 0 L200 180 L115 0 Z" fill="url(#mesh)" opacity="0.85"/>
-    </g>
-
-    <g transform="translate(610 220) scale(1.25)">
-      <path d="M0 370 L278 0 L555 370 H478 L390 210 L278 370 L170 210 L80 370 Z" fill="#f3f4f2" stroke="#1d1d1d" stroke-width="18" stroke-linejoin="round"/>
-      <path d="M278 60 L350 178 L278 330 L206 178 Z" fill="url(#greenGrad)" stroke="#1d1d1d" stroke-width="16"/>
-      <path d="M0 372 Q130 320 278 372 Q430 320 555 372" fill="none" stroke="#1d1d1d" stroke-width="18" stroke-linecap="round"/>
-      <path d="M68 556 Q150 500 235 556 Q278 588 320 556 Q410 500 490 556" fill="none" stroke="#1d1d1d" stroke-width="20" stroke-linecap="round"/>
+    <g transform="translate(790 150)">
+      <path d="M0 420 L270 0 L540 420 H468 L360 235 L270 420 L180 235 L72 420 Z" fill="#f4f3ef" stroke="#1a1a1a" stroke-width="14" stroke-linejoin="round"/>
+      <path d="M270 50 L336 180 L270 330 L204 180 Z" fill="url(#greenGrad)" stroke="#1a1a1a" stroke-width="14"/>
+      <path d="M72 420 Q190 352 270 420 Q350 352 468 420" fill="none" stroke="#1a1a1a" stroke-width="14" stroke-linecap="round"/>
+      <path d="M96 500 Q170 434 248 500 Q270 522 290 500 Q368 434 442 500" fill="none" stroke="#1a1a1a" stroke-width="16" stroke-linecap="round"/>
       <g font-family="Georgia, 'Times New Roman', serif" font-weight="700" text-anchor="middle">
-        <text x="278" y="500" font-size="118" fill="#0b0b0b">FIVE</text>
+        <text x="270" y="450" font-size="110" fill="#0f0f0f">FIVE</text>
       </g>
+    </g>
+
+    <g transform="translate(420 430)">
+      <path d="M0 0 L220 300 L370 0 L300 0 L220 170 L140 0 Z" fill="url(#greenGrad)" stroke="#1a1a1a" stroke-width="18" stroke-linejoin="round"/>
+      <path d="M0 0 L220 300 L370 0 L300 0 L220 170 L140 0 Z" fill="url(#mesh)" opacity="0.85"/>
     </g>
   </g>
 </svg>
