@@ -1,20 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Grand Theft Auto V - GTA5</title>
-<meta name="description" content="Play Grand Theft Auto V in your browser, or download the desktop app for any device. Powered by WebAssembly and WebGPU.">
-<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
-<link rel="apple-touch-icon" href="/assets/favicon.svg">
-<link rel="manifest" href="/manifest.webmanifest">
-<meta name="theme-color" content="#8dc63f">
-<link rel="preload" as="font" type="font/woff" href="/assets/chalet.woff" crossorigin>
-<link rel="preload" as="image" type="image/webp" href="/assets/hero-city.webp">
-<link rel="stylesheet" href="/styles.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Grand Theft Auto V - GTA5</title>
+  <meta name="description" content="Play Grand Theft Auto V in your browser, or download the desktop app for any device. Powered by WebAssembly and WebGPU.">
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+  <link rel="apple-touch-icon" href="/assets/logo.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#8dc63f">
+  <link rel="preload" as="font" type="font/woff" href="/assets/chalet.woff" crossorigin>
+  <link rel="preload" as="image" type="image/webp" href="/assets/hero-city.webp">
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    html, body { margin: 0; padding: 0; background: #04070a; color: #fff; font-family: Arial, Helvetica, sans-serif; }
+    body { min-height: 100vh; position: relative; }
+    .bg-photo, .bg-overlay { position: fixed; inset: 0; }
+    .bg-photo {
+      background: linear-gradient(rgba(0,0,0,.15), rgba(0,0,0,.45)), url('/assets/hero-city.webp') center/cover no-repeat;
+      filter: saturate(0.9) contrast(1.1);
+    }
+    .bg-overlay { background: rgba(0,0,0,.42); }
+    .topbar, .hero, .info, .details, .credits, .footer { position: relative; z-index: 1; }
+    .topbar {
+      padding: 20px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    .brand {
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      opacity: 0.95;
+    }
+    .mark {
+      width: 12px; height: 12px; display: inline-block; border-radius: 50%;
+      background: linear-gradient(135deg, #7ecb52, #adff6d);
+      box-shadow: 0 0 18px rgba(126, 203, 82, 0.9);
+    }
+    .hero {
+      max-width: 1100px; margin: 0 auto; padding: 30px 24px 42px; text-align: center;
+    }
+    .logo {
+      width: min(440px, 72vw);
+      height: auto;
+      display: block;
+      margin: 0 auto 26px;
+      filter: drop-shadow(0 10px 35px rgba(0,0,0,0.4));
+    }
+    .tagline {
+      max-width: 760px; margin: 0 auto 26px;
+      font-size: clamp(1rem, 1.8vw, 1.5rem);
+      line-height: 1.55;
+      color: rgba(255,255,255,0.9);
+    }
+    .actions {
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 16px;
+      margin-bottom: 22px;
+    }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; min-height: 52px;
+      padding: 0 24px; border-radius: 12px; text-decoration: none; font-weight: 700; letter-spacing: 0.04em; border: 1px solid rgba(255,255,255,0.25);
+      transition: transform 0.18s ease, filter 0.18s ease, background 0.18s ease;
+    }
+    .btn:hover { transform: translateY(-1px); filter: brightness(1.08); }
+    .btn-play {
+      background: linear-gradient(180deg, #8dc63f, #5e8b2b);
+      color: #0b1309;
+      box-shadow: 0 10px 30px rgba(141, 198, 63, 0.45);
+    }
+    .btn-download {
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+    }
+    .meta {
+      font-size: 0.9rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.8);
+    }
+    .dot { display: inline-block; margin: 0 8px; }
+    .info {
+      max-width: 1180px; margin: 0 auto; padding: 18px 20px 0;
+      display: grid; grid-template-columns: repeat(3, minmax(220px, 1fr)); gap: 24px;
+    }
+    .card {
+      background: rgba(9,14,18,.62); border: 1px solid rgba(255,255,255,.12); border-radius: 18px;
+      padding: 22px 20px;
+      backdrop-filter: blur(4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.22);
+    }
+    .card h3 { margin: 0 0 14px; font-size: 1.25rem; }
+    .card p, .card li, .card span { color: rgba(255,255,255,0.86); }
+    .card ul { list-style: none; padding: 0; margin: 0; }
+    .card li { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .card li:last-child { border-bottom: 0; }
+    .details {
+      max-width: 1180px; margin: 36px auto 0; padding: 0 20px 10px;
+    }
+    .section-title {
+      margin: 18px 0 18px; font-size: clamp(1.4rem, 2vw, 2rem); letter-spacing: 0.04em; text-transform: uppercase; color: #e8f9d9;
+    }
+    .detail-grid {
+      display: grid; grid-template-columns: repeat(2, minmax(250px, 1fr)); gap: 24px;
+    }
+    .detail {
+      background: rgba(9,14,18,.62); border: 1px solid rgba(255,255,255,.12); border-radius: 18px; padding: 22px 20px;
+    }
+    .detail h3 { margin-top: 0; margin-bottom: 12px; }
+    .detail ol, .detail ul { margin: 0; padding-left: 18px; color: rgba(255,255,255,0.86); }
+    .detail li { margin-bottom: 8px; }
+    .kv { list-style: none; padding: 0; margin: 0; }
+    .kv li { display: flex; justify-content: space-between; gap: 10px; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .kv li:last-child { border-bottom: 0; }
+    .faq { margin: 0; }
+    .faq dt { font-weight: 700; margin-top: 10px; }
+    .faq dd { margin: 4px 0 0; color: rgba(255,255,255,0.82); }
+    .credits, .footer {
+      max-width: 1180px; margin: 0 auto; padding: 0 20px 40px;
+      color: rgba(255,255,255,0.85);
+    }
+    .credits p, .footer p { line-height: 1.7; }
+    .credits a, .footer a { color: #9fe66d; }
+    @media (max-width: 820px) {
+      .info, .detail-grid { grid-template-columns: 1fr; }
+      .topbar { padding: 18px 20px; }
+      .hero { padding-top: 18px; }
+      .tagline { font-size: 1.05rem; }
+    }
+  </style>
 </head>
 <body>
-
   <div class="bg-photo" aria-hidden="true"></div>
   <div class="bg-overlay" aria-hidden="true"></div>
 
@@ -23,14 +141,14 @@
   </header>
 
   <main class="hero">
-    <img class="logo" src="/assets/logo.svg" alt="Grand Theft Auto V" width="800" height="600">
+    <img class="logo" src="/assets/logo.png" alt="Grand Theft Auto V" width="512" height="512">
     <p class="tagline">
       The full RAGE engine, compiled to WebAssembly and running on WebGPU.
       Play it right here in your browser — or take it with you.
     </p>
 
     <div class="actions">
-      <a class="btn btn-play" href="https://gta5-87g.pages.dev/" target="_blank" rel="noopener noreferrer">Play in Browser</a>
+      <a class="btn btn-play" href="/play">Play in Browser</a>
       <a class="btn btn-download" href="/download" rel="noopener">Download for Windows</a>
     </div>
 
@@ -51,10 +169,10 @@
     <div class="card">
       <h3>Requirements</h3>
       <ul>
-        <li><span>OS</span><span>Windows 10 / 11 (64-bit)</span></li>
+        <li><span>OS</span><span>Windows 10 / 11</span></li>
         <li><span>GPU</span><span>WebGPU-capable</span></li>
         <li><span>Browser</span><span>Chrome / Edge 133+</span></li>
-        <li><span>Network</span><span>Broadband (first run)</span></li>
+        <li><span>Network</span><span>Broadband</span></li>
       </ul>
     </div>
   </section>
@@ -66,10 +184,10 @@
       <article class="detail">
         <h3>Getting Started</h3>
         <ol>
-          <li>Open the browser build, or download and run the <strong>Grand Theft Auto</strong> Windows installer, then launch the app.</li>
-          <li>Wait while the engine streams its assets. The first run pulls the most data; later runs reuse what is already cached on your machine.</li>
-          <li>At the title screen, choose Story Mode or Sandbox Mode, then pick a map when asked.</li>
-          <li>Click the game once to capture the mouse and start playing.</li>
+          <li>Open the browser build, or download and run the Windows installer.</li>
+          <li>Wait while the engine streams its assets on the first load.</li>
+          <li>Choose Story Mode or Sandbox Mode from the title screen.</li>
+          <li>Click the game once to capture the mouse and begin playing.</li>
         </ol>
       </article>
 
@@ -79,36 +197,31 @@
           <li><span>Move</span><span>W A S D</span></li>
           <li><span>Look</span><span>Mouse</span></li>
           <li><span>Sprint</span><span>Shift</span></li>
-          <li><span>Enter / exit vehicle</span><span>F</span></li>
-          <li><span>Aim / fire</span><span>Right / Left mouse</span></li>
-          <li><span>Pause and map</span><span>Esc / M</span></li>
-          <li><span>Release the mouse</span><span>Esc</span></li>
-          <li><span>Toggle the FPS counter</span><span>=</span></li>
+          <li><span>Interact</span><span>F</span></li>
+          <li><span>Aim / Fire</span><span>Mouse</span></li>
+          <li><span>Pause</span><span>Esc</span></li>
         </ul>
       </article>
 
       <article class="detail">
         <h3>Performance Tips</h3>
         <ul>
-          <li>Use Chrome or Edge 133 or newer, with hardware acceleration enabled.</li>
-          <li>Close other tabs and heavy apps — the engine needs a large block of memory.</li>
-          <li>On a weaker device, append <code>?scale=0.75</code> or <code>?low=1</code> to the game URL to render at a lighter setting.</li>
-          <li>The first load streams roughly a gigabyte of world data; after that the data is kept locally and loads far faster.</li>
-          <li>Keep the tab in the foreground while it loads. Background tabs are throttled by the browser.</li>
+          <li>Use Chrome or Edge 133+ with hardware acceleration enabled.</li>
+          <li>Close other tabs and heavy apps before starting the game.</li>
+          <li>A first load may take a bit longer while data is cached.</li>
+          <li>Use a modern GPU and keep the browser in the foreground.</li>
         </ul>
       </article>
 
       <article class="detail">
         <h3>Frequently Asked</h3>
         <dl class="faq">
-          <dt>Why is the very first load slow?</dt>
-          <dd>The engine streams its assets on demand instead of shipping a multi-gigabyte download. Everything it fetches is cached, so repeat visits are much quicker.</dd>
+          <dt>Why is the first load slow?</dt>
+          <dd>It streams the world assets on demand and stores them locally for quicker future runs.</dd>
           <dt>Why does it need Chrome or Edge?</dt>
-          <dd>The engine uses WebGPU and multi-threaded WebAssembly with 64-bit memory, which only recent Chromium-based browsers support.</dd>
-          <dt>Where are my save games kept?</dt>
-          <dd>In your browser's own storage for this site, so they survive a refresh. Clearing site data will remove them.</dd>
+          <dd>The game relies on WebGPU and modern WebAssembly support available in current Chromium browsers.</dd>
           <dt>Does it work on Mac or Linux?</dt>
-          <dd>The browser build works anywhere a recent Chrome or Edge with WebGPU is available. The packaged desktop app is Windows only.</dd>
+          <dd>The browser version works on any machine with a recent supported browser and compatible GPU.</dd>
         </dl>
       </article>
     </div>
@@ -117,96 +230,16 @@
   <section class="credits">
     <h2 class="section-title">Credits</h2>
     <p>
-      This port exists thanks to <strong>Revens</strong>, who built and published the original project.
-      The source and the full write-up live at
-      <a href="https://discord.com" target="_blank" rel="noopener">Links at the discord</a>.
-    </p>
-    <p>
-      This site is a fan-made WebAssembly port. It is not affiliated with or endorsed by Rockstar Games or
-      Take-Two Interactive. “Grand Theft Auto” and all related marks are trademarks of their respective owners.
-      Game assets are streamed from the public archive.
+      This port exists thanks to <strong>Revens</strong>, whose work made the original project possible.
+      This site is a fan-made WebAssembly port and is not affiliated with Rockstar Games or Take-Two Interactive.
     </p>
   </section>
 
   <footer class="footer">
     <p>
       Fan-made WebAssembly port. Not affiliated with or endorsed by Rockstar Games or Take-Two Interactive.<br>
-      “Grand Theft Auto” and all related marks are trademarks of their respective owners. Assets are streamed from the public archive.
+      “Grand Theft Auto” and all related marks are trademarks of their respective owners.
     </p>
   </footer>
-
-  <div class="popup-backdrop" id="shoutout" hidden>
-    <div class="popup" role="dialog" aria-modal="true" aria-labelledby="shoutout-title">
-      <p class="popup-kicker">One-time message</p>
-      <h2 id="shoutout-title">Shoutout to Revens</h2>
-      <p>
-        Big thanks to <strong>Revens</strong> for making this whole thing possible.
-        They built and released the original port that this site runs.
-      </p>
-      <p>
-        I want yall to enjoy this and have alot of fun im trying my best to fix all bugs thanks for ready have a nice day :) :<br>
-        <a class="popup-link" href="https://discord.com" target="_blank" rel="noopener">Links in discord</a>
-      </p>
-      <button class="popup-close" id="shoutout-close" disabled>Close (10)</button>
-    </div>
-  </div>
-
-  <script>
-    (function () {
-      try {
-        if ('serviceWorker' in navigator) {
-          navigator.serviceWorker.getRegistrations().then(function (rs) {
-            rs.forEach(function (r) { r.unregister(); });
-          }).catch(function () {});
-        }
-        if (window.caches && caches.keys) {
-          caches.keys().then(function (ks) {
-            ks.forEach(function (k) { if (k.indexOf('gamedata') === 0) caches.delete(k); });
-          }).catch(function () {});
-        }
-      } catch (e) {}
-    })();
-
-    (function () {
-      var el = document.getElementById('shoutout');
-      if (!el) return;
-      var KEY = 'gta5-shoutout-seen';
-      var seen = false;
-      try { seen = !!localStorage.getItem(KEY); } catch (e) {}
-      if (seen) return;
-      var btn = document.getElementById('shoutout-close');
-      var wait = 10000;
-      var start = Date.now();
-      el.hidden = false;
-      btn.textContent = 'Close (10)';
-      var timer = setInterval(function () {
-        var left = Math.ceil((wait - (Date.now() - start)) / 1000);
-        if (left <= 0) {
-          clearInterval(timer);
-          btn.disabled = false;
-          btn.textContent = 'Close';
-        } else {
-          btn.textContent = 'Close (' + left + ')';
-        }
-      }, 1000);
-      btn.addEventListener('click', function () {
-        el.hidden = true;
-        try { localStorage.setItem(KEY, '1'); } catch (e) {}
-      });
-    })();
-
-    (function () {
-      function ping() {
-        if (document.visibilityState === 'hidden') return;
-        try { fetch('/__status', { cache: 'no-store' }).catch(function () {}); } catch (e) {}
-      }
-      ping();
-      setInterval(ping, 4 * 60 * 1000);
-      document.addEventListener('visibilitychange', function () {
-        if (document.visibilityState === 'visible') ping();
-      });
-      window.addEventListener('pageshow', function (e) { if (e.persisted) ping(); });
-    })();
-  </script>
 </body>
 </html>
