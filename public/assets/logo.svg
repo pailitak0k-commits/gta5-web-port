@@ -1,63 +1,46 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-labelledby="title desc">
-  <title id="title">GTA V styled logo</title>
-  <desc id="desc">A circular GTA V-inspired emblem with red, green, yellow, and blue segments and a white ribbon reading FIVE.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Grand Theft Auto V style logo</title>
+  <desc id="desc">A Grand Theft Auto-inspired logo with a large white stencil wordmark and green V emblem.</desc>
   <defs>
-    <linearGradient id="bgRed" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#ff4d4d"/>
-      <stop offset="100%" stop-color="#d61116"/>
+    <linearGradient id="greenGrad" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#5edb70"/>
+      <stop offset="50%" stop-color="#2f9b50"/>
+      <stop offset="100%" stop-color="#0f6c39"/>
     </linearGradient>
-    <linearGradient id="bgGreen" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#2ec76a"/>
-      <stop offset="100%" stop-color="#0d8a4b"/>
-    </linearGradient>
-    <linearGradient id="bgYellow" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#f6d642"/>
-      <stop offset="100%" stop-color="#d9a90f"/>
-    </linearGradient>
-    <linearGradient id="blueFill" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#3ab8ff"/>
-      <stop offset="100%" stop-color="#0b66b8"/>
-    </linearGradient>
-    <linearGradient id="darkMetal" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#2d2d2d"/>
-      <stop offset="100%" stop-color="#080808"/>
+    <linearGradient id="goldGrad" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f7df9a"/>
+      <stop offset="100%" stop-color="#b78c2d"/>
     </linearGradient>
     <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#000" flood-opacity="0.65"/>
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000" flood-opacity="0.75"/>
     </filter>
+    <pattern id="mesh" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12 L12 0 M-4 4 L4 -4 M8 16 L16 8" stroke="rgba(20,120,40,0.9)" stroke-width="1.2"/>
+    </pattern>
   </defs>
 
+  <rect width="1200" height="900" fill="#000"/>
+
   <g filter="url(#shadow)">
-    <circle cx="400" cy="400" r="350" fill="#000"/>
-    <circle cx="400" cy="400" r="320" fill="url(#bgRed)"/>
-
-    <path d="M400 390 L680 110 A320 320 0 0 1 724 410 L400 400 Z" fill="url(#bgRed)"/>
-    <path d="M400 400 L90 690 A320 320 0 0 1 90 110 L400 400 Z" fill="url(#bgGreen)"/>
-    <path d="M400 400 L680 690 A320 320 0 0 1 90 690 L400 400 Z" fill="url(#bgYellow)"/>
-
-    <circle cx="400" cy="270" r="130" fill="url(#blueFill)"/>
-    <circle cx="400" cy="270" r="82" fill="#dfe8ef"/>
-    <circle cx="400" cy="270" r="34" fill="url(#blueFill)"/>
-
-    <path d="M245 270 L400 120 L555 270 L490 270 L400 190 L310 270 Z" fill="#0f1720" opacity="0.2"/>
-
-    <path d="M200 500 L400 200 L600 500 L515 500 L400 310 L285 500 Z" fill="url(#bgGreen)" stroke="#d6d6d6" stroke-width="18" stroke-linejoin="round"/>
-
-    <path d="M400 372 L520 528 L454 528 L400 454 L346 528 L280 528 Z" fill="#0e1b12" opacity="0.32"/>
-
-    <g transform="translate(0 5)">
-      <path d="M150 544 L650 544 L650 601 Q650 635 622 643 L578 658 Q550 666 518 650 L470 626 Q440 612 400 612 Q360 612 330 626 L282 650 Q250 666 222 658 L178 643 Q150 635 150 601 Z" fill="#f2f1ef" stroke="#111" stroke-width="12"/>
-      <text x="400" y="602" text-anchor="middle" font-size="122" font-weight="900" letter-spacing="3" font-family="Impact, 'Arial Black', sans-serif" fill="#09100d">FIVE</text>
-      <path d="M180 610 Q245 580 305 610" fill="none" stroke="#0b0b0b" stroke-width="8" stroke-linecap="round" opacity="0.78"/>
-      <path d="M495 610 Q555 580 620 610" fill="none" stroke="#0b0b0b" stroke-width="8" stroke-linecap="round" opacity="0.78"/>
+    <g transform="translate(120 90)">
+      <text x="0" y="220" font-family="Impact, Arial Black, sans-serif" font-size="260" font-weight="900" letter-spacing="-18" fill="#f3f3f3" stroke="#1d1d1d" stroke-width="18">grand</text>
+      <text x="32" y="470" font-family="Impact, Arial Black, sans-serif" font-size="260" font-weight="900" letter-spacing="-18" fill="#f3f3f3" stroke="#1d1d1d" stroke-width="18">theft</text>
+      <text x="36" y="730" font-family="Impact, Arial Black, sans-serif" font-size="260" font-weight="900" letter-spacing="-18" fill="#f3f3f3" stroke="#1d1d1d" stroke-width="18">auto</text>
     </g>
 
-    <g transform="translate(400 430)">
-      <path d="M0 -140 C-18 -120 -35 -102 -56 -80 L-118 0 Q-140 46 -116 78 L-72 140 C-42 178 48 178 78 140 L120 78 Q144 46 122 0 L60 -80 C40 -102 22 -120 0 -140 Z" fill="#f5f2ee" stroke="#101010" stroke-width="12"/>
-      <path d="M0 -98 C-18 -82 -30 -62 -50 -44 L-90 8 Q-102 20 -93 38 L-48 92 C-32 110 32 110 48 92 L93 38 Q102 20 90 8 L50 -44 C31 -62 18 -83 0 -98 Z" fill="rgba(0,0,0,0.08)"/>
+    <g transform="translate(420 500)">
+      <path d="M0 0 L200 290 L350 0 L285 0 L200 180 L115 0 Z" fill="url(#greenGrad)" stroke="#1d1d1d" stroke-width="18" stroke-linejoin="round"/>
+      <path d="M0 0 L200 290 L350 0 L285 0 L200 180 L115 0 Z" fill="url(#mesh)" opacity="0.85"/>
     </g>
 
-    <circle cx="400" cy="400" r="346" fill="none" stroke="#0f1114" stroke-width="18"/>
-    <circle cx="400" cy="400" r="326" fill="none" stroke="#a9b0a9" stroke-width="4" opacity="0.8"/>
+    <g transform="translate(610 220) scale(1.25)">
+      <path d="M0 370 L278 0 L555 370 H478 L390 210 L278 370 L170 210 L80 370 Z" fill="#f3f4f2" stroke="#1d1d1d" stroke-width="18" stroke-linejoin="round"/>
+      <path d="M278 60 L350 178 L278 330 L206 178 Z" fill="url(#greenGrad)" stroke="#1d1d1d" stroke-width="16"/>
+      <path d="M0 372 Q130 320 278 372 Q430 320 555 372" fill="none" stroke="#1d1d1d" stroke-width="18" stroke-linecap="round"/>
+      <path d="M68 556 Q150 500 235 556 Q278 588 320 556 Q410 500 490 556" fill="none" stroke="#1d1d1d" stroke-width="20" stroke-linecap="round"/>
+      <g font-family="Georgia, 'Times New Roman', serif" font-weight="700" text-anchor="middle">
+        <text x="278" y="500" font-size="118" fill="#0b0b0b">FIVE</text>
+      </g>
+    </g>
   </g>
 </svg>
