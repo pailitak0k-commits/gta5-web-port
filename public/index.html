@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Grand Theft Auto V - GTA5</title>
 <meta name="description" content="Play Grand Theft Auto V in your browser, or download the desktop app for any device. Powered by WebAssembly and WebGPU.">
-<link rel="icon" type="image/png" href="/assets/logo.png">
-<link rel="apple-touch-icon" href="/assets/logo.png">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="apple-touch-icon" href="/assets/favicon.svg">
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#8dc63f">
 <link rel="preload" as="font" type="font/woff" href="/assets/chalet.woff" crossorigin>
@@ -23,7 +23,7 @@
   </header>
 
   <main class="hero">
-    <img class="logo" src="/assets/logo.png" alt="Grand Theft Auto V" width="512" height="512">
+    <img class="logo" src="/assets/logo.svg" alt="Grand Theft Auto V" width="800" height="600">
     <p class="tagline">
       The full RAGE engine, compiled to WebAssembly and running on WebGPU.
       Play it right here in your browser — or take it with you.
@@ -46,7 +46,7 @@
     </div>
     <div class="card">
       <h3>Desktop App</h3>
-      <p>The <strong>Grand Theft Auto</strong> desktop app bundles the full engine build and runs it in its own window — no browser needed. Download the installer, run it, then launch <strong>Grand Theft Auto</strong> from the Start Menu or desktop shortcut. Like the browser build, it streams the game data on demand, so the download stays small (~120 MB).</p>
+      <p>The <strong>Grand Theft Auto</strong> desktop app bundles the full engine build and runs it in its own window — no browser needed. Download the installer, run it, then launch <strong>Grand Theft Auto</strong> from the desktop.</p>
     </div>
     <div class="card">
       <h3>Requirements</h3>
@@ -119,7 +119,7 @@
     <p>
       This port exists thanks to <strong>Revens</strong>, who built and published the original project.
       The source and the full write-up live at
-      <a href="Links at the discord" target="_blank" rel="noopener">Links at the discord</a>.
+      <a href="https://discord.com" target="_blank" rel="noopener">Links at the discord</a>.
     </p>
     <p>
       This site is a fan-made WebAssembly port. It is not affiliated with or endorsed by Rockstar Games or
@@ -145,7 +145,7 @@
       </p>
       <p>
         I want yall to enjoy this and have alot of fun im trying my best to fix all bugs thanks for ready have a nice day :) :<br>
-        <a class="popup-link" href="LINKS IN DISCORD" target="_blank" rel="noopener">Links in discord</a>
+        <a class="popup-link" href="https://discord.com" target="_blank" rel="noopener">Links in discord</a>
       </p>
       <button class="popup-close" id="shoutout-close" disabled>Close (10)</button>
     </div>
@@ -179,8 +179,6 @@
       var start = Date.now();
       el.hidden = false;
       btn.textContent = 'Close (10)';
-      // Time-based, so the 10s wait stays correct even if the browser throttles
-      // timers while the tab is in the background.
       var timer = setInterval(function () {
         var left = Math.ceil((wait - (Date.now() - start)) / 1000);
         if (left <= 0) {
@@ -204,9 +202,6 @@
       }
       ping();
       setInterval(ping, 4 * 60 * 1000);
-      // Do no network work while the tab is hidden (that work used to pile up
-      // and stutter the page the moment the visitor came back), and refresh
-      // the keep-alive right away when the tab becomes visible again.
       document.addEventListener('visibilitychange', function () {
         if (document.visibilityState === 'visible') ping();
       });
